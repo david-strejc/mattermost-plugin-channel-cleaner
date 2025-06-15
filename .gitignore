@@ -1,0 +1,13 @@
+# Build output
+dist/
+*.tar.gz
+
+# Dependencies
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

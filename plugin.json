@@ -1,0 +1,72 @@
+{
+    "id": "com.mattermost.channel-cleaner",
+    "name": "Channel Cleaner",
+    "description": "Plugin to clear all messages in a channel with configurable permissions",
+    "homepage_url": "https://github.com/mattermost/mattermost-plugin-channel-cleaner",
+    "support_url": "https://github.com/mattermost/mattermost-plugin-channel-cleaner/issues",
+    "release_notes_url": "https://github.com/mattermost/mattermost-plugin-channel-cleaner/releases",
+    "icon_path": "assets/icon.svg",
+    "version": "0.7.0",
+    "min_server_version": "9.5.0",
+    "server": {
+        "executable": "server/dist/plugin-linux-amd64",
+        "executables": {
+            "linux-amd64": "server/dist/plugin-linux-amd64",
+            "linux-arm64": "server/dist/plugin-linux-arm64",
+            "darwin-amd64": "server/dist/plugin-darwin-amd64",
+            "darwin-arm64": "server/dist/plugin-darwin-arm64",
+            "windows-amd64": "server/dist/plugin-windows-amd64.exe"
+        }
+    },
+    "webapp": {
+        "bundle_path": "webapp/dist/main.js"
+    },
+    "settings_schema": {
+        "header": "Configure channel clearing permissions and behavior",
+        "footer": "Visit the [GitHub repository](https://github.com/mattermost/mattermost-plugin-channel-cleaner) for more information.",
+        "settings": [
+            {
+                "key": "AllowedRoles",
+                "display_name": "Allowed Roles",
+                "type": "radio",
+                "help_text": "Choose which roles can clear channels",
+                "default": "system_admin",
+                "options": [
+                    {
+                        "display_name": "System Admins Only",
+                        "value": "system_admin"
+                    },
+                    {
+                        "display_name": "System and Channel Admins",
+                        "value": "channel_admin"
+                    },
+                    {
+                        "display_name": "All Members",
+                        "value": "all"
+                    }
+                ]
+            },
+            {
+                "key": "RequireConfirmation",
+                "display_name": "Require Confirmation",
+                "type": "bool",
+                "help_text": "When enabled, users must confirm before clearing a channel",
+                "default": true
+            },
+            {
+                "key": "ExcludeSystemMessages",
+                "display_name": "Exclude System Messages",
+                "type": "bool",
+                "help_text": "When enabled, system messages (joins/leaves) won't be deleted",
+                "default": false
+            },
+            {
+                "key": "LogClearActions",
+                "display_name": "Log Clear Actions",
+                "type": "bool",
+                "help_text": "Log all channel clear actions to the Mattermost audit log",
+                "default": true
+            }
+        ]
+    }
+}
